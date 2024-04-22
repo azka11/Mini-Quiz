@@ -38,7 +38,7 @@ function AdminSideBar() {
       const links = [
         "/admin",
         "/admin/quiz",
-        "/AdminDash/Complaints",
+        "/admin/profile",
       ];
 
     const image = [home, quiz, profile];
