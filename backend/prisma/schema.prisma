@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  admin_id        Int @id @default (autoincrement())
+  name            String @unique
+  email           String @unique
+  password        String
+  image           String?
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt 
+
+  multipleChoice  MultipleChoice[]
+  category        Category[]
+  question        Question[]
+}
+
+model User {
+  user_id         Int @id @default (autoincrement())
+  username        String  @unique
+  email           String  @unique
+  password        String
+  image           String?
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt  
+  
+  UserAnswer      UserAnswer[]
+}
+
+model Question {
+  question_id     Int @id @default (autoincrement())
+  admin_id        Int
+  admin           Admin @relation(fields: [admin_id], references: [admin_id])
+  category_id     Int
+  category        Category @relation(fields: [category_id], references: [category_id])
+  question_text   String
+  correct_answer  String
+
+  multipleChoice  MultipleChoice[]
+  userAnswer      UserAnswer[]
+}
+
+model MultipleChoice {
+  choice_id       Int @id @default (autoincrement())
+  admin_id        Int
+  admin           Admin @relation(fields: [admin_id], references: [admin_id])
+  question_id     Int
+  question        Question @relation(fields: [question_id], references: [question_id])
+  choice_answer   String
+
+  userAnswer      UserAnswer[]
+}
+
+model UserAnswer {
+  answer_id       Int @id @default (autoincrement())
+  user_id         Int
+  user            User @relation(fields: [user_id], references: [user_id])
+  question_id     Int
+  question        Question @relation(fields: [question_id], references: [question_id])
+  choice_id       Int
+  multipleChoice  MultipleChoice @relation(fields: [choice_id], references: [choice_id])
+}
+
+model Category {
+  category_id     Int @id @default (autoincrement())
+  admin_id        Int
+  admin           Admin @relation(fields: [admin_id], references: [admin_id])
+  category_name   String
+
+  question        Question[]
+}
