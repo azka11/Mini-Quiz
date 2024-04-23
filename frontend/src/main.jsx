@@ -18,6 +18,7 @@ import AdminQuizPage from './pages/Admin_QuizPage.jsx';
 import UserSettingPage from './pages/User_SettingPage.jsx';
 import AdminSettingPage from './pages/Admin_SettingPage.jsx';
 import NotFound from './pages/NotFound.jsx';
+import UserRegister from './pages/User_Register.jsx';
 
 
 const router = createBrowserRouter([
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
   {
     path:"/admin/profile",
     element: <AdminSettingPage />,
+  },
+  {
+      path:"/register",
+      element: <UserRegister />,
   },
   {
       path:"/login",

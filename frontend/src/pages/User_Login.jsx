@@ -30,8 +30,8 @@ function UserLogin() {
 
     return (
         <section className="bg-gray-100 min-h-screen flex box-border justify-center items-center">
-    <div className="bg-[#dfa674] rounded-2xl flex max-w-3xl p-5 items-center">
-        <div className="md:w-1/2 px-8">
+    <div className="bg-[#dfa674] rounded-2xl flex max-w-3xl p-5 items-start">
+        <div className="md:w-1/2 px-8 py-4">
             <h2 className="font-bold text-3xl text-[#002D74]">Login</h2>
             <p className="text-sm mt-4 text-[#002D74]">If you already a member, easily log in now.</p>
 
@@ -83,11 +83,11 @@ function UserLogin() {
 
                     Login with Google
                 </button>
-            <div className="mt-10 text-sm border-b border-gray-500 py-5 playfair tooltip">Forget password?</div>
+            <div className="mt-52 text-sm border-b border-gray-500 py-5 playfair tooltip">Forget password?</div>
 
             <div className="mt-4 text-sm flex justify-between items-center container-mr">
                 <p className="mr-3 md:mr-0 ">If you don't have an account..</p>
-                <button className="hover:border register text-white bg-[#002D74] hover:border-gray-400 rounded-xl py-2 px-5 hover:scale-110 hover:bg-[#002c7424] font-semibold duration-300">Register</button>
+                <button onClick={() => navigate('/register')} className="hover:border register text-white bg-[#002D74] hover:border-gray-400 rounded-xl py-2 px-5 hover:scale-110 hover:bg-[#002c7424] font-semibold duration-300">Register</button>
             </div>
         </div>
         <div className="md:block hidden w-1/2">
